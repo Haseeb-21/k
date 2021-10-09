@@ -1,0 +1,29 @@
+SELECT
+e.title,
+ea.house_number AS "event_house_number",
+ea.street_name AS "event_street_name",
+ea.city AS "event_city",
+h.first_name AS "host_name",
+i.first_name AS "guest_name"
+FROM event AS e
+INNER JOIN address AS ea
+ ON e.frn_address_id = ea.address_id
+INNER JOIN event_contact AS ec
+ ON e.event_id = ec.frn_event_id
+INNER JOIN contact AS i
+ ON ec.frn_contact_id = i.contact_id
+INNER JOIN contact AS h
+ ON h.contact_id = e.frn_host_contact_id;
+
+
+SELECT
+c.first_name,
+c.last_name,
+a.house_number,
+a.street_name,
+a.city
+FROM contact AS c
+INNER JOIN contact_address AS ca
+ ON c.contact_id = ca.frn_contact_id
+INNER JOIN address AS a
+ ON a.address_id = ca.frn_address_id;
