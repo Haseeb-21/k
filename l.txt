@@ -3,3 +3,29 @@ client id
 
 client secret
 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
+
+
+At line #10, add:
+var passport = require('passport');
+var session = require('express-session');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+passport.use(new GoogleStrategy({
+	clientID: ' ', // you get this from Google, refer to your Part II
+	clientSecret: ' ', // you get this from Google, refer to your Part II
+	callbackURL: 'http://localhost:3000/auth/google/callback'},
+
+  function(accessToken, refreshToken, profile, cb) {
+cb(null, profile);
+  }
+));
+
+At line #27, add:
+		app.use(session({secret: 'cat'}));
+		app.use(passport.initialize());
+		app.use(passport.session());
+		passport.serializeUser(function(user, done) {
+			done(null, user);
+		});
+		passport.deserializeUser(function(user, done) {
+			done(null, user);
+		});
