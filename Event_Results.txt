@@ -1,3 +1,9 @@
+mysql -u root -p -t < "Assign #2 Verify.sql" >
+"School_Verify_Results.txt"
+
+
+
+
 +-----------------+
 | Tables_in_party |
 +-----------------+
